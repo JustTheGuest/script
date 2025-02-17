@@ -3,7 +3,7 @@ local function esp()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/JustTheGuest/script/refs/heads/main/mm.lua'))()
 end
 local function farm()
-    loadstring(game:HttpGet('https://pastebin.com/raw/hjrMwtfa'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/JustTheGuest/script/refs/heads/main/gui.lua'))()
 end
 
 task.spawn(esp)
