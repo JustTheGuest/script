@@ -1195,7 +1195,7 @@ function sendPlayerLeaveNotification(playerName)
 
     local dataLeave = {
         username = "Notification",
-        avatar_url = "https://cdn.discordapp.com/attachments/1292386513363144726/1295553746130174012/Photoroom-20240808_210138.png?ex=675b88f3&is=675a3773&hm=e3a132b25e9e68d7eacd6ff736b660d8651a3cd9fb9493b9ddbb70767f4cf8bf&",
+        avatar_url = "https://media.discordapp.net/attachments/1326959392339267625/1341456689949446297/exit-circle-floor-sign-with-directional-arrow-and-a-person-walking-text-in-the-lower-side.png?ex=67b61065&is=67b4bee5&hm=661460a43333a89a03fdcffb9f619c400e7c4fda27e6884f0cbccd512261ed4f&=",
         content = "**" .. playerName .. "** left from the game!",
         embeds = {
             {
