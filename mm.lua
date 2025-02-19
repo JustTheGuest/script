@@ -694,7 +694,6 @@ local values = {
     ["Fragile Gun"] = 0.12,
     ["Fragile Knife"] = 0.12,
     ["Carrot Bunny"] = 0.32,
-    ["Waves"] = 140,
     ["Ocean"] = 145,
     ["Beach"] = 3,
     ["Floral"] = 0.33,
