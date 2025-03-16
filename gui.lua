@@ -758,7 +758,7 @@ Frame.Visible = false
 
 
 
-local xyz24random_time = math.random(0.2, 0.5)
+local xyz24random_time = math.random(2, 3)
 
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/jensonhirst/Orion/main/source')))()
