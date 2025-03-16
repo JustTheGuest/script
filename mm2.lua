@@ -11,18 +11,7 @@ task.spawn(esp)
 
 setclipboard("Public on top! Telegram: https://t.me/JospakHome / Discord: https://discord.gg/cS6qcnBStG")
 
-StarterGui:SetCore("SendNotification", {
-    Title = "Join us telegram!",
-    Text = "link's copied! t.me/JospakHome",
-    Duration = 10
-})
-
-StarterGui:SetCore("SendNotification", {
-    Title = "Join us discord!",
-    Text = "Discord: discord.gg/cS6qcnBStG",
-    Duration = 13
-})
-
+print("GUI")
 title = "Loading script libraries." --upper title
 loading_text = "Without them the script will not work!" --gray title
 loadingtime = "15" --loading time (in seconds)
