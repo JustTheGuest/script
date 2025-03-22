@@ -6,4 +6,5 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/JustTheGuest/script/r
 
 
 print("GUI")
+wait(1)
 loadstring(game:HttpGet('https://raw.githubusercontent.com/JustTheGuest/script/refs/heads/main/gui.lua'))()
