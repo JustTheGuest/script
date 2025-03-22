@@ -1,3 +1,5 @@
+print("start")
+
 local stages = {
     {title = "Bypass Anti-Cheat", loading_text = "Please wait!", loadingtime = 20},
     {title = "Just a moment", loading_text = "This may take up to 2 minutes.", loadingtime = 20},
@@ -14,6 +16,15 @@ local loadingtext = Instance.new("TextLabel")
 local Dots = Instance.new("Frame")
 local seperator = Instance.new("Frame")
 local loadingBar = Instance.new("Frame") -- Линия загрузки
+local Dot1 = Instance.new("Frame")
+local Dot2 = Instance.new("Frame")
+local Dot3 = Instance.new("Frame")
+local InsideDot1 = Instance.new("Frame")
+local InsideDot2 = Instance.new("Frame")
+local InsideDot3 = Instance.new("Frame")
+local UICorner1 = Instance.new("UICorner")
+local UICorner2 = Instance.new("UICorner")
+local UICorner3 = Instance.new("UICorner")
 
 --Properties:
 
@@ -93,6 +104,50 @@ loadingBar.Position = UDim2.new(0, 0, 0.85, 0)
 loadingBar.Size = UDim2.new(0, 0, 0.05, 0) -- Начальная ширина 0
 loadingBar.AnchorPoint = Vector2.new(0, 0.5)
 
+Dot1.Name = "Dot1"
+Dot1.Parent = Dots
+Dot1.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+Dot1.Position = UDim2.new(0.0611661971, 0, 0.234447539, 0)
+Dot1.Size = UDim2.new(0.159291148, 0, 0.51158762, 0)
+
+UICorner1.CornerRadius = UDim.new(0.5, 0)
+UICorner1.Parent = Dot1
+
+InsideDot1.Name = "InsideDot"
+InsideDot1.Parent = Dot1
+InsideDot1.AnchorPoint = Vector2.new(0.5, 0.5)
+InsideDot1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+InsideDot1.Position = UDim2.new(0.5, 0, 0.5, 0)
+UICorner2.CornerRadius = UDim.new(0.5, 0)
+UICorner2.Parent = InsideDot1
+
+Dot2.Name = "Dot2"
+Dot2.Parent = Dots
+Dot2.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+Dot2.Position = UDim2.new(0.419989735, 0, 0.234447539, 0)
+Dot2.Size = UDim2.new(0.159291148, 0, 0.51158762, 0)
+
+UICorner3.CornerRadius = UDim.new(0.5, 0)
+UICorner3.Parent = Dot2
+
+InsideDot2.Name = "InsideDot"
+InsideDot2.Parent = Dot2
+InsideDot2.AnchorPoint = Vector2.new(0.5, 0.5)
+InsideDot2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+InsideDot2.Position = UDim2.new(0.5, 0, 0.5, 0)
+
+Dot3.Name = "Dot3"
+Dot3.Parent = Dots
+Dot3.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+Dot3.Position = UDim2.new(0.778813243, 0, 0.234447539, 0)
+Dot3.Size = UDim2.new(0.159291148, 0, 0.51158762, 0)
+
+InsideDot3.Name = "InsideDot"
+InsideDot3.Parent = Dot3
+InsideDot3.AnchorPoint = Vector2.new(0.5, 0.5)
+InsideDot3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+InsideDot3.Position = UDim2.new(0.5, 0, 0.5, 0)
+
 -- Функция для обновления линии загрузки
 local function updateLoadingBar(duration)
     local startTime = tick()
@@ -103,15 +158,37 @@ local function updateLoadingBar(duration)
     end
 end
 
+-- Анимация точек
+local function animateDots()
+    while true do
+        Dot1.InsideDot:TweenSize(UDim2.new(1, 0, 1, 0), "In", "Sine", 0.25, true)
+        wait(0.25)
+        Dot2.InsideDot:TweenSize(UDim2.new(1, 0, 1, 0), "In", "Sine", 0.25, true)
+        wait(0.25)
+        Dot3.InsideDot:TweenSize(UDim2.new(1, 0, 1, 0), "In", "Sine", 0.25, true)
+        wait(0.25)
+        Dot1.InsideDot:TweenSize(UDim2.new(0.5, 0, 0.5, 0), "In", "Sine", 0.25, true)
+        wait(0.25)
+        Dot2.InsideDot:TweenSize(UDim2.new(0.5, 0, 0.5, 0), "In", "Sine", 0.25, true)
+        wait(0.25)
+        Dot3.InsideDot:TweenSize(UDim2.new(0.5, 0, 0.5, 0), "In", "Sine", 0.25, true)
+        wait(0.25)
+    end
+end
+
 -- Функция для изменения текста и обновления прогресса
 local function changeTextAndProgress()
     for _, stage in ipairs(stages) do
         name.Text = stage.title
         loadingtext.Text = stage.loading_text
-        updateLoadingBar(stage.loadingtime)
-        wait(stage.loadingtime)
+        updateLoadingBar(stage.loadingtime)  -- Обновление линии загрузки
+        wait(stage.loadingtime)  -- Ждем завершения каждого этапа загрузки
     end
-    Frame.Visible = false
+    print('123')  -- Код выполнится только после завершения всех этапов загрузки
+    Frame.Visible = false  -- Прячем экран загрузки
 end
 
-coroutine.wrap(changeTextAndProgress)()
+coroutine.wrap(animateDots)()  -- запускаем анимацию точек
+changeTextAndProgress() -- запускаем процесс загрузки, после которого выполнится остальной код
+
+print('end')
