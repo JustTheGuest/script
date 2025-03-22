@@ -1,6 +1,5 @@
-print("start")
-
 local stages = {
+    {title = "Loading script libraries.", loading_text = "Without them the script will not work!", loadingtime = 30},
     {title = "Bypass Anti-Cheat", loading_text = "Please wait!", loadingtime = 20},
     {title = "Just a moment", loading_text = "This may take up to 2 minutes.", loadingtime = 20},
     {title = "Pre loading script", loading_text = "Please wait, it won't take long.", loadingtime = 20},
@@ -14,20 +13,21 @@ local UICorner = Instance.new("UICorner")
 local name = Instance.new("TextLabel")
 local loadingtext = Instance.new("TextLabel")
 local Dots = Instance.new("Frame")
-local seperator = Instance.new("Frame")
-local loadingBar = Instance.new("Frame") -- Линия загрузки
 local Dot1 = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local InsideDot = Instance.new("Frame")
+local UICorner_3 = Instance.new("UICorner")
 local Dot2 = Instance.new("Frame")
+local UICorner_4 = Instance.new("UICorner")
+local InsideDot_2 = Instance.new("Frame")
+local UICorner_5 = Instance.new("UICorner")
 local Dot3 = Instance.new("Frame")
-local InsideDot1 = Instance.new("Frame")
-local InsideDot2 = Instance.new("Frame")
-local InsideDot3 = Instance.new("Frame")
-local UICorner1 = Instance.new("UICorner")
-local UICorner2 = Instance.new("UICorner")
-local UICorner3 = Instance.new("UICorner")
+local UICorner_6 = Instance.new("UICorner")
+local InsideDot_3 = Instance.new("Frame")
+local UICorner_7 = Instance.new("UICorner")
+local seperator = Instance.new("Frame")
 
---Properties:
-
+-- Properties and UI Setup
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.DisplayOrder = 999999999
@@ -61,7 +61,6 @@ name.BorderSizePixel = 0
 name.Position = UDim2.new(0, 0, 0.0501869693, 0)
 name.Size = UDim2.new(1, 0, 0.164251208, 0)
 name.Font = Enum.Font.FredokaOne
-name.Text = "Loading..."
 name.TextColor3 = Color3.fromRGB(255, 255, 255)
 name.TextScaled = true
 name.TextSize = 14.000
@@ -76,7 +75,6 @@ loadingtext.BorderSizePixel = 0
 loadingtext.Position = UDim2.new(0.161290318, 0, 0.213806599, 0)
 loadingtext.Size = UDim2.new(0.677419364, 0, 0.12077295, 0)
 loadingtext.Font = Enum.Font.FredokaOne
-loadingtext.Text = "Please wait..."
 loadingtext.TextColor3 = Color3.fromRGB(97, 97, 97)
 loadingtext.TextScaled = true
 loadingtext.TextSize = 14.000
@@ -90,6 +88,66 @@ Dots.BorderColor3 = Color3.fromRGB(27, 42, 53)
 Dots.Position = UDim2.new(0.293254822, 0, 0.555557609, 0)
 Dots.Size = UDim2.new(0.41670385, 0, 0.255644023, 0)
 
+Dot1.Name = "Dot1"
+Dot1.Parent = Dots
+Dot1.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+Dot1.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Dot1.Position = UDim2.new(0.0611661971, 0, 0.234447539, 0)
+Dot1.Size = UDim2.new(0.159291148, 0, 0.51158762, 0)
+
+UICorner_2.CornerRadius = UDim.new(0.5, 0)
+UICorner_2.Parent = Dot1
+
+InsideDot.Name = "InsideDot"
+InsideDot.Parent = Dot1
+InsideDot.AnchorPoint = Vector2.new(0.5, 0.5)
+InsideDot.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+InsideDot.BorderColor3 = Color3.fromRGB(27, 42, 53)
+InsideDot.Position = UDim2.new(0.5, 0, 0.5, 0)
+
+UICorner_3.CornerRadius = UDim.new(0.5, 0)
+UICorner_3.Parent = InsideDot
+
+Dot2.Name = "Dot2"
+Dot2.Parent = Dots
+Dot2.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+Dot2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Dot2.Position = UDim2.new(0.419989735, 0, 0.234447539, 0)
+Dot2.Size = UDim2.new(0.159291148, 0, 0.51158762, 0)
+
+UICorner_4.CornerRadius = UDim.new(0.5, 0)
+UICorner_4.Parent = Dot2
+
+InsideDot_2.Name = "InsideDot"
+InsideDot_2.Parent = Dot2
+InsideDot_2.AnchorPoint = Vector2.new(0.5, 0.5)
+InsideDot_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+InsideDot_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+InsideDot_2.Position = UDim2.new(0.5, 0, 0.5, 0)
+
+UICorner_5.CornerRadius = UDim.new(0.5, 0)
+UICorner_5.Parent = InsideDot_2
+
+Dot3.Name = "Dot3"
+Dot3.Parent = Dots
+Dot3.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+Dot3.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Dot3.Position = UDim2.new(0.778813243, 0, 0.234447539, 0)
+Dot3.Size = UDim2.new(0.159291148, 0, 0.51158762, 0)
+
+UICorner_6.CornerRadius = UDim.new(0.5, 0)
+UICorner_6.Parent = Dot3
+
+InsideDot_3.Name = "InsideDot"
+InsideDot_3.Parent = Dot3
+InsideDot_3.AnchorPoint = Vector2.new(0.5, 0.5)
+InsideDot_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+InsideDot_3.BorderColor3 = Color3.fromRGB(27, 42, 53)
+InsideDot_3.Position = UDim2.new(0.5, 0, 0.5, 0)
+
+UICorner_7.CornerRadius = UDim.new(0.5, 0)
+UICorner_7.Parent = InsideDot_3
+
 seperator.Name = "seperator"
 seperator.Parent = Frame_2
 seperator.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
@@ -98,97 +156,35 @@ seperator.BorderSizePixel = 0
 seperator.Position = UDim2.new(0, 0, 0.365113497, 0)
 seperator.Size = UDim2.new(0.999704897, 0, 0.026786631, 0)
 
-loadingBar.Parent = Frame_2
-loadingBar.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-loadingBar.Position = UDim2.new(0, 0, 0.85, 0)
-loadingBar.Size = UDim2.new(0, 0, 0.05, 0) -- Начальная ширина 0
-loadingBar.AnchorPoint = Vector2.new(0, 0.5)
+-- Scripts:
+local function YCMO_fake_script() -- Dots.Dots
+    local script = Instance.new('LocalScript', Dots)
 
-Dot1.Name = "Dot1"
-Dot1.Parent = Dots
-Dot1.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-Dot1.Position = UDim2.new(0.0611661971, 0, 0.234447539, 0)
-Dot1.Size = UDim2.new(0.159291148, 0, 0.51158762, 0)
-
-UICorner1.CornerRadius = UDim.new(0.5, 0)
-UICorner1.Parent = Dot1
-
-InsideDot1.Name = "InsideDot"
-InsideDot1.Parent = Dot1
-InsideDot1.AnchorPoint = Vector2.new(0.5, 0.5)
-InsideDot1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-InsideDot1.Position = UDim2.new(0.5, 0, 0.5, 0)
-UICorner2.CornerRadius = UDim.new(0.5, 0)
-UICorner2.Parent = InsideDot1
-
-Dot2.Name = "Dot2"
-Dot2.Parent = Dots
-Dot2.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-Dot2.Position = UDim2.new(0.419989735, 0, 0.234447539, 0)
-Dot2.Size = UDim2.new(0.159291148, 0, 0.51158762, 0)
-
-UICorner3.CornerRadius = UDim.new(0.5, 0)
-UICorner3.Parent = Dot2
-
-InsideDot2.Name = "InsideDot"
-InsideDot2.Parent = Dot2
-InsideDot2.AnchorPoint = Vector2.new(0.5, 0.5)
-InsideDot2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-InsideDot2.Position = UDim2.new(0.5, 0, 0.5, 0)
-
-Dot3.Name = "Dot3"
-Dot3.Parent = Dots
-Dot3.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-Dot3.Position = UDim2.new(0.778813243, 0, 0.234447539, 0)
-Dot3.Size = UDim2.new(0.159291148, 0, 0.51158762, 0)
-
-InsideDot3.Name = "InsideDot"
-InsideDot3.Parent = Dot3
-InsideDot3.AnchorPoint = Vector2.new(0.5, 0.5)
-InsideDot3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-InsideDot3.Position = UDim2.new(0.5, 0, 0.5, 0)
-
--- Функция для обновления линии загрузки
-local function updateLoadingBar(duration)
-    local startTime = tick()
-    while tick() - startTime < duration do
-        local progress = (tick() - startTime) / duration
-        loadingBar.Size = UDim2.new(progress, 0, 0.05, 0)
-        wait(0.1)
-    end
-end
-
--- Анимация точек
-local function animateDots()
     while true do
-        Dot1.InsideDot:TweenSize(UDim2.new(1, 0, 1, 0), "In", "Sine", 0.25, true)
         wait(0.25)
-        Dot2.InsideDot:TweenSize(UDim2.new(1, 0, 1, 0), "In", "Sine", 0.25, true)
+        script.Parent.Dot1.InsideDot:TweenSize(UDim2.new(1, 0, 1, 0), "In", "Sine", 0.25, true)
         wait(0.25)
-        Dot3.InsideDot:TweenSize(UDim2.new(1, 0, 1, 0), "In", "Sine", 0.25, true)
+        script.Parent.Dot2.InsideDot:TweenSize(UDim2.new(1, 0, 1, 0), "In", "Sine", 0.25, true)
         wait(0.25)
-        Dot1.InsideDot:TweenSize(UDim2.new(0.5, 0, 0.5, 0), "In", "Sine", 0.25, true)
+        script.Parent.Dot3.InsideDot:TweenSize(UDim2.new(1, 0, 1, 0), "In", "Sine", 0.25, true)
         wait(0.25)
-        Dot2.InsideDot:TweenSize(UDim2.new(0.5, 0, 0.5, 0), "In", "Sine", 0.25, true)
+        script.Parent.Dot1.InsideDot:TweenSize(UDim2.new(0, 0, 0, 0), "In", "Sine", 0.25, true)
         wait(0.25)
-        Dot3.InsideDot:TweenSize(UDim2.new(0.5, 0, 0.5, 0), "In", "Sine", 0.25, true)
+        script.Parent.Dot2.InsideDot:TweenSize(UDim2.new(0, 0, 0, 0), "In", "Sine", 0.25, true)
         wait(0.25)
+        script.Parent.Dot3.InsideDot:TweenSize(UDim2.new(0, 0, 0, 0), "In", "Sine", 0.25, true)
     end
 end
 
--- Функция для изменения текста и обновления прогресса
-local function changeTextAndProgress()
-    for _, stage in ipairs(stages) do
-        name.Text = stage.title
-        loadingtext.Text = stage.loading_text
-        updateLoadingBar(stage.loadingtime)  -- Обновление линии загрузки
-        wait(stage.loadingtime)  -- Ждем завершения каждого этапа загрузки
-    end
-    print('123')  -- Код выполнится только после завершения всех этапов загрузки
-    Frame.Visible = false  -- Прячем экран загрузки
+coroutine.wrap(YCMO_fake_script)()
+
+-- Change Text and Wait for Each Stage
+for _, stage in ipairs(stages) do
+    name.Text = stage.title
+    loadingtext.Text = stage.loading_text
+    wait(stage.loadingtime)
 end
 
-coroutine.wrap(animateDots)()  -- запускаем анимацию точек
-changeTextAndProgress() -- запускаем процесс загрузки, после которого выполнится остальной код
+Frame.Visible = false
 
-print('end')
+print("key System")
