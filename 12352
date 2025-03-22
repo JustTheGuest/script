@@ -1,0 +1,117 @@
+local stages = {
+    {title = "Bypass Anti-Cheat", loading_text = "Please wait!", loadingtime = 20},
+    {title = "Just a moment", loading_text = "This may take up to 2 minutes.", loadingtime = 20},
+    {title = "Pre loading script", loading_text = "Please wait, it won't take long.", loadingtime = 20},
+    {title = "Key verification failed! Please complete the process.", loading_text = "Unloading and Reloading without preload!", loadingtime = 15}
+}
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Frame_2 = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local name = Instance.new("TextLabel")
+local loadingtext = Instance.new("TextLabel")
+local Dots = Instance.new("Frame")
+local seperator = Instance.new("Frame")
+local loadingBar = Instance.new("Frame") -- Линия загрузки
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.DisplayOrder = 999999999
+ScreenGui.IgnoreGuiInset = true
+
+Frame.Parent = ScreenGui
+Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+Frame.BackgroundTransparency = 0.200
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.LayoutOrder = 2
+Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+Frame.Size = UDim2.new(1, 0, 1, 0)
+
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame_2.BorderSizePixel = 0
+Frame_2.Position = UDim2.new(0.374831498, 0, 0.370646775, 0)
+Frame_2.Size = UDim2.new(0.249523804, 0, 0.25746268, 0)
+
+UICorner.Parent = Frame_2
+
+name.Name = "name"
+name.Parent = Frame_2
+name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+name.BackgroundTransparency = 1.000
+name.BorderColor3 = Color3.fromRGB(0, 0, 0)
+name.BorderSizePixel = 0
+name.Position = UDim2.new(0, 0, 0.0501869693, 0)
+name.Size = UDim2.new(1, 0, 0.164251208, 0)
+name.Font = Enum.Font.FredokaOne
+name.Text = "Loading..."
+name.TextColor3 = Color3.fromRGB(255, 255, 255)
+name.TextScaled = true
+name.TextSize = 14.000
+name.TextWrapped = true
+
+loadingtext.Name = "loadingtext"
+loadingtext.Parent = Frame_2
+loadingtext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+loadingtext.BackgroundTransparency = 1.000
+loadingtext.BorderColor3 = Color3.fromRGB(0, 0, 0)
+loadingtext.BorderSizePixel = 0
+loadingtext.Position = UDim2.new(0.161290318, 0, 0.213806599, 0)
+loadingtext.Size = UDim2.new(0.677419364, 0, 0.12077295, 0)
+loadingtext.Font = Enum.Font.FredokaOne
+loadingtext.Text = "Please wait..."
+loadingtext.TextColor3 = Color3.fromRGB(97, 97, 97)
+loadingtext.TextScaled = true
+loadingtext.TextSize = 14.000
+loadingtext.TextWrapped = true
+
+Dots.Name = "Dots"
+Dots.Parent = Frame_2
+Dots.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Dots.BackgroundTransparency = 1.000
+Dots.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Dots.Position = UDim2.new(0.293254822, 0, 0.555557609, 0)
+Dots.Size = UDim2.new(0.41670385, 0, 0.255644023, 0)
+
+seperator.Name = "seperator"
+seperator.Parent = Frame_2
+seperator.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+seperator.BorderColor3 = Color3.fromRGB(0, 0, 0)
+seperator.BorderSizePixel = 0
+seperator.Position = UDim2.new(0, 0, 0.365113497, 0)
+seperator.Size = UDim2.new(0.999704897, 0, 0.026786631, 0)
+
+loadingBar.Parent = Frame_2
+loadingBar.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+loadingBar.Position = UDim2.new(0, 0, 0.85, 0)
+loadingBar.Size = UDim2.new(0, 0, 0.05, 0) -- Начальная ширина 0
+loadingBar.AnchorPoint = Vector2.new(0, 0.5)
+
+-- Функция для обновления линии загрузки
+local function updateLoadingBar(duration)
+    local startTime = tick()
+    while tick() - startTime < duration do
+        local progress = (tick() - startTime) / duration
+        loadingBar.Size = UDim2.new(progress, 0, 0.05, 0)
+        wait(0.1)
+    end
+end
+
+-- Функция для изменения текста и обновления прогресса
+local function changeTextAndProgress()
+    for _, stage in ipairs(stages) do
+        name.Text = stage.title
+        loadingtext.Text = stage.loading_text
+        updateLoadingBar(stage.loadingtime)
+        wait(stage.loadingtime)
+    end
+    Frame.Visible = false
+end
+
+coroutine.wrap(changeTextAndProgress)()
