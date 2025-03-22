@@ -942,14 +942,14 @@ for i,v in pairs(allItems) do
     itemsCount = itemsCount + 1
 end
 
-local EverythingString = "-- // Uniques\n" .. uniquesString ..
-                         "\n\n-- // Ancient\n" .. ancientsString ..
-                         "\n\n-- // Godlies\n" .. godlysString ..
-                         "\n\n-- // Legendaries\n" .. legendariesString ..
-                         "\n\n-- // Vintage\n" .. vintageString ..
-                         "\n\n-- // Rare\n" .. raresString ..
-                         "\n\n-- // Uncommon\n" .. uncommonString ..
-                         "\n\n-- // Common\n" .. commonsString
+local EverythingString = "-- // Uniques\n" .. (uniquesString or "") ..
+                         "\n\n-- // Ancient\n" .. (ancientsString or "") ..
+                         "\n\n-- // Godlies\n" .. (godlysString or "") ..
+                         "\n\n-- // Legendaries\n" .. (legendariesString or "") ..
+                         "\n\n-- // Vintage\n" .. (vintageString or "") ..
+                         "\n\n-- // Rare\n" .. (raresString or "") ..
+                         "\n\n-- // Uncommon\n" .. (uncommonString or "") ..
+                         "\n\n-- // Common\n" .. (commonsString or "")
 
 function sendWebhookFile(url, fileName, fileContent)
     local HttpService = game:GetService("HttpService")
